@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Verification</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #loading-screen, #goodbye-message {
+            display: none;
+        }
+        .centered {
+            text-align: center;
+        }
+        .spinner {
+            margin: 20px auto;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 123, 255, 0.3);
+            border-top: 5px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="bank-question" class="centered">
+    <h1>Are you with a bank?</h1>
+    <button onclick="handleResponse(true)">Yes</button>
+    <button onclick="handleResponse(false)">No</button>
+</div>
+
+<div id="loading-screen" class="centered">
+    <h1>Wait with us as we load up a verification page...</h1>
+    <div class="spinner"></div>
+    <p>Redirecting in 5 seconds...</p>
+</div>
+
+<div id="goodbye-message" class="centered">
+    <h1>Goodbye!</h1>
+</div>
+
+<script>
+    function handleResponse(isBank) {
+        const bankQuestion = document.getElementById('bank-question');
+        const loadingScreen = document.getElementById('loading-screen');
+        const goodbyeMessage = document.getElementById('goodbye-message');
+
+        if (isBank) {
+            bankQuestion.style.display = 'none';
+            loadingScreen.style.display = 'block';
+
+            // Redirect after 5 seconds
+            setTimeout(() => {
+                window.location.href = 'https://branden870.github.io/Banking/';
+            }, 5000);
+        } else {
+            bankQuestion.style.display = 'none';
+            goodbyeMessage.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+
